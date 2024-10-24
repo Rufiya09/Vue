@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .items{
+            height: auto;
+            width: 100px;
+        }
+    </style>
+    <div id="app">
+        <ol>
+            <li v-for="x in fruits" > 
+                <img v-bind:src="x.url" class="items"> <br>
+                {{ x.name }}
+            </li>
+
+                
+        </ol>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    fruits:  [ 
+                    {name: 'pizza' ,url: 'Assests/pizza.jpg'},
+                    {name: 'burrito' , url: 'Assests/burrito.jpg'},
+                    {name: 'pizza' , url: 'Assests/pizza.jpg'},
+                    {name: 'burrito' , url: 'Assests/burrito.jpg'}
+                    ]
+
+                }
+            }
+        })
+        app.mount('#app')
+    </script> -->
+
+
+
+    <div id="app2">
+        <button v-on:click="count++">Mouse count </button> <br>
+        {{' Mouse count : ' + count }}
+        
+    </div>
+
+    <script>
+        const app2 = Vue.createApp({
+            data() {
+                return {
+                    count: 0
+                }
+            }
+        })
+        app2.mount('#app2')
+    </script>
+
+
+    <style>
+        #app3 {
+            border-radius: 10px;
+        }
+        #app3 > img {
+            height: auto;
+            width: 20%;
+            float: right;
+            margin-right: 450px;
+            border-radius: 10px;
+        }
+
+        li:hover {
+            background-color: rgb(224, 224, 224);
+            width: 70px;
+            cursor: pointer;
+        }
+        #app3 > ol {
+            list-style-type: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        #app3 li {
+            padding-left: 6px;
+            border-radius: 5px;
+            width: 70px;
+          }
+    </style>
+
+    <div id="app3">
+        <img v-bind:src="imageurl">
+        <ul>
+            <li v-for="x in fastfood" v-on:click="imageurl = x.url">{{ x.name }} </li>
+        </ul>
+    </div>
+        
+    <script>
+        const app3 = Vue.createApp({
+            data() {
+                return {
+                    imageurl: 'Assests/pizza.jpg',
+                    fastfood: [
+                        {name: 'Pizza' , url: 'Assests/pizza.jpg'},
+                        {name: 'Burrito' , url: 'Assests/burrito.jpg'},
+                        {name: 'no more' , url: 'Assests/unnamed.png'},
+                        {name: 'Pizza' , url: 'Assests/pizza.jpg'},
+                        {name: 'Burrito' , url: 'Assests/burrito.jpg'},
+                        {name: 'no more' , url: 'Assests/unnamed.png'}
+                    ]
+                    
+                    
+                }
+            }
+        })
+        app3.mount('#app3')
+    </script>
+
+
+    <style>
+        #app4{
+            border: 1px solid red;
+            border-radius: 10px;
+            height: 150px;
+            width: 300px;
+            cursor: pointer;
+            
+            
+        }
+    </style>
+
+    <div id="app4">
+        <div v-on:click="changeText">
+        {{ text }}
+        </div>
+    </div>
+
+    <script>
+        const app4 = Vue.createApp({
+            data() {
+                return {
+                    text: 'click here'
+                }
+            },
+            methods: {
+                changeText() {
+                    this.text = this.text === 'click here' ? 'Hello World!!' : 'click here';
+                }
+            }
+        })
+        app4.mount('#app4')
+    </script>
+
+
+    <div id="app5">
+        <p>{{ 'Mouse count : ' + count }}</p>
+        <button v-on:click="addmouse(1)">+1</button>
+        <button v-on:click="addmouse(5)">+5</button>
+        <button v-on:click="addmouse(-1)">-1</button>
+
+    </div>
+
+    <script>
+        const app5 = Vue.createApp({
+            data() {
+                return{
+                    count: 0
+                }
+            
+        }, 
+        methods: {
+            addmouse(number) {
+                this.count += number
+            }
+        }
+        })
+        app5.mount('#app5')
+    </script>
+
+
+
+    <div id="app6">
+        <button v-on:click="createalert"> alert</button>
+    </div>
+
+    <script>
+        const app6 = Vue.createApp({
+            methods: {
+                createalert() {
+                    alert ('this is a alert')
+                }
+            }
+        })
+        app6.mount('#app6')
+    </script>
+
+    <style>
+        #app7 > div{
+            height: 150px;
+            width: 300px;
+            border: 1px solid brown;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <div id="app7">
+        <div v-on:click.left="changeBg" v-bind:style=" { backgroundColor: 'hsl('+bgcolor+' , 80%,80%)'  }" >
+            Press left mouse button here
+        </div>
+    </div>
+
+    <script>
+        const app7 = Vue.createApp({
+            data() {
+                return {
+                    bgcolor: 0
+                }
+            
+        },
+        methods : {
+            changeBg() {
+                this.bgcolor += 50;
+            }
+        }
+        })
+        app7.mount('#app7')
+    </script>
+
+
+
+
+
+    <h2>Shopping List</h2>
+    <div id="app">
+        <form v-on:submit.prevent="addItem">
+                <p>What do you need ? <br>
+                <input required type="text" placeholder="item name.." v-model="itemName">
+                </p> 
+                <p>How Many ? <br>
+                <input required type="text"  placeholder="number of items.." v-model="itemNumber"> <br>
+                </p>
+                <button type="submit">Add Item</button>
+        </form>
+
+
+
+        <div id="app8">
+            <form v-on:submit.prevent="addItem">
+                Shopping List:
+                <p>What do you need? <br>
+                    <input type="text" v-model="itemName" required placeholder="Item name">
+                </p>
+                <p>Number of items? <br>
+                    <input type="text" v-model="itemNumber" required placeholder="Item number">
+                </p>
+                <button type="submit">Add Item</button>
+            </form>
+        
+            <div>
+                Shopping list:
+                <ul>
+                    <li v-for="item in shoppingList"> {{ item.name }} , {{ item.number }} </li>
+                </ul>
+            </div>
+        </div>
+        
+        <script>
+            const app8 = Vue.createApp({
+                data() {
+                    return {
+                        itemName: null,
+                        itemNumber: null,
+                        shoppingList: [
+                            { name: 'potatoes', number: 5 }
+                        ]
+                    }
+                },
+                methods: {
+                    addItem() {
+                        let item = {
+                            name: this.itemName,
+                            number: this.itemNumber,
+                        }
+                        this.shoppingList.push(item)
+                        this.itemName = null
+                        this.itemNumber = null
+                    }
+                }
+            })
+            app8.mount('#app8')
+        </script>
+        
+</body>
+</html>

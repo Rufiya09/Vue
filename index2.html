@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .pizza {
+            height: auto;
+            width: 100px;
+        }
+    </style>
+    <div id="app">
+        <p v-if = "typewritersinstock"> Present in Stock!! </p>
+        <p v-else> Out of Stock..</p>
+
+        <p v-if = " fruitscount > 0 && fruitscount < 10">In stock</p>
+        <p v-else-if = "fruitscount > 10 && fruitscount < 20">frozen stock</p>
+        <p v-else = "fruitscount">stock no more..</p>
+
+        <p v-if = text.includes('pizza')>Pizza is included!!.. NO WORRIES</p>
+        <p v-else> Pizza is not found </p>
+
+        
+
+        <div>
+            <p v-if = text.includes('pizza')>
+                Pizza is included!!.. NO WORRIES
+                <img class="pizza" src="1.jpg" alt="">
+            </p>
+            <p v-else> Pizza is not found </p>
+        </div>
+    </div>
+
+    <style>
+        #menu {
+            border: black 1px;
+            width: 130px;
+            padding: 10px 20px 20px 20px;
+            font-weight: bold;
+            background-color:cadetblue;
+          }
+        
+        .items img {
+            height: auto;
+            width: 100px;
+            margin-top: 10px; 
+        }
+    </style>
+
+    <div id="menu">
+
+        <div v-if="text.includes('pizza') && text.includes('burrito')" class="items">
+            Text includes both pizza and burrito
+            <img src="Assests/pizza.jpg" alt="Pizza">
+            <img src="Assests/burrito.jpg" alt="Burrito">
+        </div>
+
+        <div v-else-if = text.includes("pizza") class="items">
+            Text includes the word pizza 
+            <img class="items" src="Assests/pizza.jpg" alt="">
+        </div>
+        
+        <div v-else-if = text.includes('burrito') class="items">     
+            Text includes the word burrito
+            <img  class="items" src="Assests/burrito.jpg" alt="">
+        </div>
+
+        
+        
+        <div v-else class="items"> 
+            The word Pizza or Burito are not present in the text 
+            <img class="items" src="Assests/unnamed.png" alt="">
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    typewritersinstock: true,
+                    fruitscount: 15,
+                    text: 'i love pizza along with french fries',
+                }
+            }
+        })
+        app.mount('#app')
+
+    </script>
+
+    <script>
+        const menu = Vue.createApp ({
+            data() {
+                return {
+                    text: 'I like burrito and pizza'
+                }
+            }
+        })
+        menu.mount('#menu')
+    </script>
+</body>
+</html>

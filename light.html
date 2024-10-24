@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Switch</title>
+</head>
+<body>
+    <style>
+        .btn {
+            width: 100px;
+            height: 50px;
+            color: rgb(216, 18, 18);
+            font-weight: bold;
+        }
+        .light-box {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+    <div id="app">
+        <div class="light-box" :style="{ backgroundColor: lighton ? 'black' : 'white' }"></div>
+        <button class="btn" @click="lighton = !lighton">Switch light</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    lighton: false // Initially, the light is off
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>

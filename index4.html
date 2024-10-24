@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="x in fruits">{{ x }}</li>
+        </ol>
+
+
+        <p class="para" v-for="(x, index) in fruits">{{ index }}: "{{ x }}"</p>
+
+        <p class="para" v-for="(x, index) in fruits">{{ index }}: "{{ x }}", url: "{{ x.url }}"</p>
+        
+    </div>
+
+    <style>
+        .para{
+            margin-left: 20px;
+        }
+    </style>
+
+    <div id="items">
+        <figure v-for="x in fastfoods">
+        <img v-bind:src="x.url">
+        <figcaption>{{ x.name }}</figcaption>
+    </figure>
+    </div>
+
+    <style>
+       img {
+        height: auto;
+        width: 100px;
+       }
+
+    </style>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                   fruits: [
+                   'kiwi',
+                   'papaya',
+                   'litchi',
+                   'strawbery',
+                   'avocado'
+                   ]
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+
+    <script>
+        const items = Vue.createApp({
+            data() {
+                return {
+                    fastfoods: [
+                   {name: 'pizza' , url: 'Assests/pizza.jpg'},
+                   {name: 'burrito' , url: 'Assests/burrito.jpg'},
+                   {name: 'pizza' , url: 'Assests/pizza.jpg'},
+                   {name: 'burrito' , url: 'Assests/burrito.jpg'}
+                   ]
+                }
+            }
+        })
+        items.mount('#items')
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <div id="app">
+        <div v-show="showDiv">
+           This is a hidden text
+        </div>
+    </div>
+
+    <div id="app1">
+        <div v-show="showDiv">div tag with v-show</div>
+        <div v-if="showDiv">div tag with v-if</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    showDiv: true
+
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+
+    <script>
+        const app1 = Vue.createApp({
+            data() {
+                return {
+                    showDiv: false
+
+                }
+            }
+        })
+        app1.mount('#app1')
+    </script>
+    
+</body>
+</html>

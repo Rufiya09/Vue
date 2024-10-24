@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+            <p>{{ 'Mouse count : ' + count }}</p>
+            <button v-on:click="addMouse(1)" >+1</button>
+            <button v-on:click="addMouse(5)" >+5</button>
+            <button v-on:click="addMouse(-1)" >-1</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data () {
+                return {
+                    count: 0
+                }
+            
+        },
+        methods : {
+            addMouse(number){
+                this.count += number;
+            }
+        }
+        })
+        app.mount('#app')
+    </script>
+
+
+    <div id="app1">
+        <img v-on:click="showMessage" src="Assests/pizza.jpg" alt="">
+        <p> {{ imageText }}</p>
+    </div>
+
+    <style>
+        #app1 > img {
+            height: 200px;
+            width: 200px;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        const app1 = Vue.createApp( {
+            data () {
+                return {
+                    imageText : ''
+                }
+            
+        },
+        methods : {
+            showMessage () {
+                this.imageText= 'Hii Iam Pizza'
+            }
+        }
+    })
+    app1.mount('#app1')
+    </script>
+
+
+    
+</body>
+</html>

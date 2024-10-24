@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        form {
+            border: dashed black 1px;
+            width: 200px;
+            padding: 20px;
+          }
+          
+          .important-item {
+            background-color: rgb(255, 139, 139);
+            width: 100px;
+            font-weight: bold;
+            color: black;
+        }
+          
+
+    </style>
+    <h2>Shopping List</h2>
+    <div id="app">
+        <form v-on:submit.prevent="addItem">
+                <p>What do you need ?
+                <input required type="text" placeholder="item name.." v-model="itemName">
+                </p>
+                <p>How Many ?
+                <input required type="text"  placeholder="number of items.." v-model="itemNumber"> <br>
+                </p>
+                <button type="submit">Add Item</button>
+
+                <p>Important item ?
+                    <input type="checkbox" v-model="important"> 
+                    {{ important }}
+                </p>
+        </form>
+
+        <div>
+            Shopping list :
+            <ul>
+                <li v-for="item in shoppingList" v-bind:class="{ 'important-item': item.isImportant }" >{{ item.name }} , {{ item.number }}</li>
+            </ul>
+        </div>
+    </div>
+
+    
+    
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    itemName: null,
+                    itemNumber: null,
+                    shoppingList: [
+                    { name: 'potatoes' , number: 5}
+                    ],
+                    important: false
+                }
+        },
+        methods : {
+            addItem () {
+                let item = {
+                    name: this.itemName,
+                    number: this.itemNumber,
+                    isImportant: this.important
+                  }
+                  this.shoppingList.push(item)
+                  this.itemName = null
+                  this.itemNumber = null 
+                  this.important = false 
+                }
+            },
+           
+        })
+        app.mount('#app')
+        
+    </script>
+</body>
+</html>

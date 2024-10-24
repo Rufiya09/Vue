@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click.once="createalert">Create Alert</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+           methods : {
+            createalert() {
+                alert('Alert is created')
+            }
+           }
+        })
+        app.mount('#app')
+    </script>
+
+    <style>
+        #green {
+            background-color: rgb(218, 123, 7);
+            color: black;
+        }
+    </style>
+
+    <div id="app1">
+        <p>Start writing inside the text box to record the key value:</p>
+        <input type="text" v-on:keydown="getKey">
+        <p id="green">{{ keyValue }}</p>
+      </div>
+
+    <script>
+        const app1 = Vue.createApp({
+            data () {
+                return {
+                    keyValue: ''
+                }
+        },
+        methods : {
+            getKey(evt) {
+                this.keyValue = evt.key
+                console.log(evt.key)
+            }
+        }
+        })
+        app1.mount('#app1')
+    </script>
+
+
+
+    <!-- <div id="app2">
+        <p>The 'S' key generates an alert:</p>
+        <textarea v-on:keydown.s="createAlert" name="" id="" placeholder="Start Typing..."></textarea>
+    </div>
+
+    <script>
+        const app2 = Vue.createApp({
+            methods: {
+              createAlert(evt) {
+                alert("You pressed the 'S' key!");
+              }
+            }
+          })
+         app2.mount('#app2')
+    </script> -->
+
+
+
+    <div id="app3">
+        <p>Press 'Ctrl' and 'S' in combination to generate an alert:</p>
+        <textarea  v-on:keydown.ctrl.s="createAlert" placeholder="Start writing.."></textarea>    
+    </div>
+
+    <script>
+        const app3 = Vue.createApp({
+            methods: {
+              createAlert(evt) {
+                alert("You pressed the 'S' and 'Ctrl' keys, in combination!");
+              }
+            }
+          })
+         app3.mount('#app3')
+    </script>
+
+    <style>
+        #app4 > div {
+            width: 160px;
+            padding: 20px;
+            cursor: default;
+            font-weight: bold;
+          }
+    </style>
+    <p>Left Mouse Button Event</p>
+    <div id="app4">
+        <div v-on:click.left="changeColor" v-bind:style="{ backgroundColor:'hsl('+bgColor+',80%,80%)' }">
+          <p>Press left mouse button here.</p>
+        </div>
+      </div>
+
+    <script>
+        const app4 = Vue.createApp({
+            data () {
+                return {
+                    bgColor: 0
+                }
+            
+        },
+        methods: {
+            changeColor () {
+                this.bgColor+= 50;
+            }
+        }
+        })
+        app4.mount('#app4')
+    </script>
+    
+</body>
+</html>

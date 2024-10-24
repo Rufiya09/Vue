@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h3>Click on the box below!</h3>
+    <div id="app">
+        <div v-on:click="changeText">
+            {{ text }}
+        </div>
+        
+    </div>
+
+    <style>
+        #app{
+            border: 1px solid red;
+            border-radius: 10px;
+            height: 150px;
+            width: 300px;
+            background-color: lightcoral;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    text: 'Click me!'
+                }
+            },
+            methods: {
+                changeText() {
+                    this.text = 'Hello World!!'
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+
+
+
+    <div id="app2">
+        <h4>Move the mouse pointer over the box below</h4>
+        <div v-on:mousemove="mousepos" v-bind:style="{backgroundColor:'hsl('+xpos+',80%,80%)'}">
+            <span> xpos : {{ xpos }} </span><br>
+            <span> ypos : {{ ypos }} </span>
+        </div>
+    </div> 
+
+    <style>
+        #app2{
+            border: 1px solid black;
+            border-radius: 10px;
+            height: 200px;
+            width: 400px;
+            margin-top: 20px;
+        }
+        #app2 > div {
+            border: 1px solid black;
+            border-radius: 10px;
+            height: 100px;
+            width: 150px;
+            background-color: lightcoral;
+            margin-left: 100px;
+        }
+    </style>
+
+    <script>
+        const app2 = Vue.createApp({
+            data(){
+                return {
+                    xpos : 0,
+                    ypos : 0
+                }
+        },
+        methods: {
+            mousepos(event) {
+                this.xpos = event.offsetX
+                this.ypos = event.offsetY
+            }
+        }
+    })
+    app2.mount('#app2')
+    </script>
+
+
+
+    <div id="app3">
+        <textarea v-on:input ="writeText" name="" id="" placeholder="Start Writing..." rows="8" cols="30"></textarea>
+        <div>
+            <span>{{ text }}</span>
+        </div>
+    </div>
+    <style>
+        #app3{
+            border: 10px solid rgb(218, 255, 218);
+            border-radius: 10px;
+            height: 562px;
+            width: 400px;
+            margin-top: 20px;
+            position: relative;
+        }
+        #app3 > textarea {
+           margin-top: 20px;
+           margin-left: 20px;
+        }
+        #app3 > img {
+            display: block;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        #app3 > div {
+            background-image: url(Assests/notebook.png);
+            margin-top: 10px;
+            aspect-ratio: 1;
+            background-size: 91%;
+            background-position: -345px 0;
+            overflow: hidden;
+        }
+
+        #app3 > div > span {
+            margin-left: 39px;
+        }
+
+
+    </style>
+
+    <script>
+        const app3 = Vue.createApp({
+            data () {
+                return {
+                    text: ''
+                }
+            
+        },
+        methods: {
+            writeText(event){
+                this.text = event.target.value
+            }
+        }
+        })
+        app3.mount('#app3')
+    </script>
+</body>
+</html>
+
